@@ -1,0 +1,44 @@
+﻿@model IEnumerable<QCMApp.Questionnaires>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste questionnaires</h2>
+
+<p>
+    @Html.ActionLink("Nouveau questionnaire", "CreateQuestionnaire", "Questionnaire")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.intitule)
+        </th>
+        <th>
+            Date de création
+        </th>
+        <th>
+            Activité
+        </th>
+        <th>
+            Actions
+        </th>
+
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.intitule)
+        </td>
+        <td>
+            @Html.ActionLink("Aperçu", "Aperçu", new { id = item.Id }) |
+            @Html.ActionLink("Update", "Update", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

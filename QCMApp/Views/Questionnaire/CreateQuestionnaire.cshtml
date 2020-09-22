@@ -1,0 +1,38 @@
+﻿@model QCMApp.Questionnaires
+
+@{
+    ViewBag.Title = "CreateQuestionnaire";
+}
+
+<h2>Création du questionnaire</h2>
+
+
+
+<hr class="style1" />
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink("Nouvelle question", "Index", "Home", null, new { @class = "btn btn-default" })
+    </div>
+    <div class="col-md-2">
+        @Html.ActionLink("Nouvelle élément", "Index", "Home", null, new { @class = "btn btn-default" })
+    </div>
+    @using (Html.BeginForm("InsertQuestionnaire", "Questionnaire", FormMethod.Post))
+    {
+        <div class="col-md-2">
+            <input type="text" value="nom du questionnaire" name="intitule" id="intitule"/>
+        </div>
+    <div class="col-md-2">
+        <input type="number" value="note acceptable" name="note" />
+    </div>
+    <div class="col-md-2">
+        <input type="submit" value="Finir" />
+    </div>
+    }
+    <div class="col-md-1">
+        <p>Nbr quest</p>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

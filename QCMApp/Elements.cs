@@ -20,9 +20,10 @@ namespace QCMApp
         public string media { get; set; }
         public string couleur { get; set; }
         public string doc { get; set; }
-        public int ChoixId { get; set; }
-        public int TypeElement_Id { get; set; }
+        public Nullable<int> ChoixId { get; set; }
+        public Nullable<int> TypeElement_Id { get; set; }
         public Nullable<int> questionnaire_id { get; set; }
+        public string texte { get; set; }
     
         public virtual Choixes Choixes { get; set; }
         public virtual Questionnaires Questionnaires { get; set; }

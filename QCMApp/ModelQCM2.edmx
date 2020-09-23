@@ -19,14 +19,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="intitule" Type="varchar(max)" />
-          <Property Name="reponses" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="intitule" Type="varchar(max)" Nullable="false" />
+          <Property Name="reponses" Type="varchar" MaxLength="150" />
           <Property Name="media" Type="varchar" MaxLength="300" />
           <Property Name="couleur" Type="varchar" MaxLength="50" />
-          <Property Name="doc" Type="varchar(max)" Nullable="false" />
-          <Property Name="ChoixId" Type="int" Nullable="false" />
-          <Property Name="TypeElement_Id" Type="int" Nullable="false" />
+          <Property Name="doc" Type="varchar(max)" />
+          <Property Name="ChoixId" Type="int" />
+          <Property Name="TypeElement_Id" Type="int" />
           <Property Name="questionnaire_id" Type="int" />
+          <Property Name="texte" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Questionnaires">
           <Key>
@@ -53,6 +54,16 @@
           <Property Name="date" Type="datetime" Nullable="false" />
           <Property Name="UtilisateurId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TypeElements">
           <Key>
             <PropertyRef Name="Id" />
@@ -72,7 +83,7 @@
           <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Elements_Choixes">
-          <End Role="Choixes" Type="Self.Choixes" Multiplicity="1" />
+          <End Role="Choixes" Type="Self.Choixes" Multiplicity="0..1" />
           <End Role="Elements" Type="Self.Elements" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Choixes">
@@ -96,7 +107,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ElementTypeElement">
-          <End Role="TypeElements" Type="Self.TypeElements" Multiplicity="1" />
+          <End Role="TypeElements" Type="Self.TypeElements" Multiplicity="0..1" />
           <End Role="Elements" Type="Self.Elements" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeElements">
@@ -124,6 +135,7 @@
           <EntitySet Name="Elements" EntityType="Self.Elements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questionnaires" EntityType="Self.Questionnaires" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reponses" EntityType="Self.Reponses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeElements" EntityType="Self.TypeElements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Elements_Choixes" Association="Self.FK_Elements_Choixes">
@@ -152,6 +164,7 @@
           <EntitySet Name="Elements" EntityType="QCMAppBDDModel.Elements" />
           <EntitySet Name="Questionnaires" EntityType="QCMAppBDDModel.Questionnaires" />
           <EntitySet Name="Reponses" EntityType="QCMAppBDDModel.Reponses" />
+          <EntitySet Name="sysdiagrams" EntityType="QCMAppBDDModel.sysdiagrams" />
           <EntitySet Name="TypeElements" EntityType="QCMAppBDDModel.TypeElements" />
           <EntitySet Name="Utilisateurs" EntityType="QCMAppBDDModel.Utilisateurs" />
           <AssociationSet Name="FK_Elements_Choixes" Association="QCMAppBDDModel.FK_Elements_Choixes">
@@ -186,14 +199,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="intitule" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="reponses" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="intitule" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="reponses" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="media" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="couleur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="doc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ChoixId" Type="Int32" Nullable="false" />
-          <Property Name="TypeElement_Id" Type="Int32" Nullable="false" />
+          <Property Name="doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChoixId" Type="Int32" />
+          <Property Name="TypeElement_Id" Type="Int32" />
           <Property Name="questionnaire_id" Type="Int32" />
+          <Property Name="texte" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Choixes" Relationship="QCMAppBDDModel.FK_Elements_Choixes" FromRole="Elements" ToRole="Choixes" />
           <NavigationProperty Name="Questionnaires" Relationship="QCMAppBDDModel.FK_Elements_Questionnaires" FromRole="Elements" ToRole="Questionnaires" />
           <NavigationProperty Name="TypeElements" Relationship="QCMAppBDDModel.FK_ElementTypeElement" FromRole="Elements" ToRole="TypeElements" />
@@ -225,6 +239,16 @@
           <Property Name="UtilisateurId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Utilisateurs" Relationship="QCMAppBDDModel.FK_UtilisateurReponse" FromRole="Reponses" ToRole="Utilisateurs" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="TypeElements">
           <Key>
             <PropertyRef Name="Id" />
@@ -246,7 +270,7 @@
           <NavigationProperty Name="Reponses" Relationship="QCMAppBDDModel.FK_UtilisateurReponse" FromRole="Utilisateurs" ToRole="Reponses" />
         </EntityType>
         <Association Name="FK_Elements_Choixes">
-          <End Type="QCMAppBDDModel.Choixes" Role="Choixes" Multiplicity="1" />
+          <End Type="QCMAppBDDModel.Choixes" Role="Choixes" Multiplicity="0..1" />
           <End Type="QCMAppBDDModel.Elements" Role="Elements" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Choixes">
@@ -270,7 +294,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ElementTypeElement">
-          <End Type="QCMAppBDDModel.TypeElements" Role="TypeElements" Multiplicity="1" />
+          <End Type="QCMAppBDDModel.TypeElements" Role="TypeElements" Multiplicity="0..1" />
           <End Type="QCMAppBDDModel.Elements" Role="Elements" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeElements">
@@ -293,7 +317,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -312,6 +336,7 @@
           <EntitySetMapping Name="Elements">
             <EntityTypeMapping TypeName="QCMAppBDDModel.Elements">
               <MappingFragment StoreEntitySet="Elements">
+                <ScalarProperty Name="texte" ColumnName="texte" />
                 <ScalarProperty Name="questionnaire_id" ColumnName="questionnaire_id" />
                 <ScalarProperty Name="TypeElement_Id" ColumnName="TypeElement_Id" />
                 <ScalarProperty Name="ChoixId" ColumnName="ChoixId" />
@@ -348,6 +373,17 @@
                 <ScalarProperty Name="intituleQuestionnaire" ColumnName="intituleQuestionnaire" />
                 <ScalarProperty Name="idQuestionnaire" ColumnName="idQuestionnaire" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QCMAppBDDModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

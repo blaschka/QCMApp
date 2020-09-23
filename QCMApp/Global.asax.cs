@@ -16,6 +16,8 @@ namespace QCMApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Tools.Logger.Ecrire(Tools.Logger.Niveau.Info, "Connection");
         }
     }
 }

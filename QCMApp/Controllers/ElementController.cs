@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QCMApp.bll;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,19 @@ namespace QCMApp.Controllers
 {
     public class ElementController : Controller
     {
+        QuestionnaireManager qm = new QuestionnaireManager();
+        ElementManager em = new ElementManager();
         // GET: Element
-        public ActionResult PageCreateDescription()
+        public ActionResult PageCreateDescription(int id)
         {
-            return View();
+            Questionnaires questionnaire = new Questionnaires();
+            questionnaire = qm.FindById(id);
+            return View(questionnaire);
+        }
+        public ActionResult CreateDescription(string intitule, string texte,int idQuestionnaire)
+        {
+
+            return RedirectToAction("CreateQuestionnaire", "Questionnaire");
         }
         public ActionResult PageCreateQuestion()
         {

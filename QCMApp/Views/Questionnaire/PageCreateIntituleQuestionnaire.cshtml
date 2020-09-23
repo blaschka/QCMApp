@@ -1,0 +1,30 @@
+﻿@model QCMApp.Questionnaires
+
+@{
+    ViewBag.Title = "PageCreateIntituleQuestionnaire";
+}
+
+<h2>Intitulé questionnaire</h2>
+
+<div class="form-horizontal">
+    <h4>Questionnaires</h4>
+    <hr />
+    @using (Html.BeginForm("CreateIntituleQuestionnaire", "Questionnaire", FormMethod.Post))
+    {
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <input type="text" placeholder="Intitulé du questionnaire" name="intitule" id="intituleCreateIntitule" required />
+        </div>
+                <div class="col-md-2">
+            <input type="submit" value="Enregistrer l'intitulé" onclick="ConfirmMessage()"  />
+        </div>
+    </div>
+    }
+</div>
+<script>
+    function ConfirmMessage() {
+
+        alert("L'intitulé à bien été enregistré")
+   }
+</script>

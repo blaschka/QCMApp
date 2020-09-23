@@ -12,24 +12,30 @@
 <hr class="style1" />
 <div class="row">
     <div class="col-md-2">
+        <h2> </h2>
         @Html.ActionLink("Nouvelle question", "", "Question", null, new { @class = "btn btn-default" })
     </div>
     <div class="col-md-2">
-        @Html.ActionLink("Nouvelle description", "PageCreateDescription", "Element", null, new { @class = "btn btn-default" })
+        <h2> </h2>
+        @Html.ActionLink("Nouvelle description", "PageCreateDescription", "Element", new { id =Model.Id }, new { @class = "btn btn-default" })
     </div>
     @using (Html.BeginForm("CreateQuestionnaire", "Questionnaire", FormMethod.Post))
     {
-        <div class="col-md-2">
-            <input type="text" placeholder="Nom du questionnaire" name="intitule" id="intitule"/>
-        </div>
-    <div class="col-md-2">
-        <input type="number" placeholder="Note acceptable" name="note" />
+    <div class="col-md-3">
+        <label for="intitule"> Intitule du questionnaire</label>
+        <input type="text" value="@Html.DisplayFor(model => model.intitule)" name="intitule" id="intituleCreateIntitule" size="100" />
     </div>
     <div class="col-md-2">
+        <label for="note"> Note acceptable</label>
+        <input type="number" placeholder="10" name="note" min="1" max="20" />
+    </div>
+    <div class="col-md-2">
+        <h2> </h2>
         <input type="submit" value="Enregister" />
     </div>
     }
     <div class="col-md-1">
+        <h2> </h2>
         <p>Nbr quest</p>
     </div>
 </div>

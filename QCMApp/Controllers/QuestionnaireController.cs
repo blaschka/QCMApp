@@ -18,9 +18,23 @@ namespace QCMApp.Controllers
             listeQuestionnaires = qm.SelectAll();
             return View(listeQuestionnaires);
         }
-        public ActionResult PageCreateQuestionnaire()
+        public ActionResult PageCreateQuestionnaire(Questionnaires questionnaire)
+        {
+            return View(questionnaire);
+        }
+        public ActionResult PageCreateIntituleQuestionnaire()
         {
             return View();
+        }
+        public ActionResult CreateIntituleQuestionnaire(string intitule)
+        {
+            var questionnaireEntity = new Questionnaires();
+            questionnaireEntity.intitule = intitule;
+            questionnaireEntity.date = DateTime.Now;
+            qm.InsertQuestionnaire(questionnaireEntity);
+            //questionnaireEntity = qm.FindByIntitule(questionnaireEntity.intitule);
+            
+            return RedirectToAction("PageCreateQuestionnaire","Questionnaire",questionnaireEntity) ;
         }
         public ActionResult CreateQuestionnaire(string intitule, int note)
         {

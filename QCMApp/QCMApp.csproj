@@ -51,6 +51,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.11\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -164,6 +167,13 @@
     <Compile Include="Reponses.cs">
       <DependentUpon>ModelQCM2.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModelQCM2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\DateTimeSurrogate.cs" />
+    <Compile Include="Tools\JsonHelper.cs" />
+    <Compile Include="Tools\JSonSimpleClass.cs" />
+    <Compile Include="Tools\Logger.cs" />
     <Compile Include="TypeElements.cs">
       <DependentUpon>ModelQCM2.tt</DependentUpon>
     </Compile>
@@ -200,6 +210,9 @@
     <Content Include="ModelQCM2.edmx.diagram">
       <DependentUpon>ModelQCM2.edmx</DependentUpon>
     </Content>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -227,6 +240,7 @@
     <Content Include="Views\Questionnaire\PageCreateQuestionnaire.cshtml" />
     <Content Include="Views\Questionnaire\PageUpdateQuestionnaire.cshtml" />
     <Content Include="Views\Element\PageCreateDescription.cshtml" />
+    <Content Include="Views\Questionnaire\PageCreateIntituleQuestionnaire.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,11 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="36200bad796f4adebe5fdc31ff934745" Name="Diagram1" ZoomLevel="95">
-        <EntityTypeShape EntityType="QCMAppBDDModel.Choixes" Width="1.5" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.Choixes" Width="1.5" PointX="0.75" PointY="1.75" />
         <EntityTypeShape EntityType="QCMAppBDDModel.Elements" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="QCMAppBDDModel.Questionnaires" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.Questionnaires" Width="1.5" PointX="0.75" PointY="7.5" />
         <EntityTypeShape EntityType="QCMAppBDDModel.Reponses" Width="1.5" PointX="8" PointY="1" />
-        <EntityTypeShape EntityType="QCMAppBDDModel.TypeElements" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.TypeElements" Width="1.5" PointX="0.75" PointY="5.125" />
         <EntityTypeShape EntityType="QCMAppBDDModel.Utilisateurs" Width="1.5" PointX="5.75" PointY="1.375" />
         <AssociationConnector Association="QCMAppBDDModel.FK_Elements_Choixes" />
         <AssociationConnector Association="QCMAppBDDModel.FK_Elements_Questionnaires" />

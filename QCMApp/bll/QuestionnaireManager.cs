@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
@@ -42,6 +43,26 @@ namespace QCMApp.bll
 
             return questionnaire;
         }
+        public Questionnaires FindByIntitule(String intitule)
+        {
+            Questionnaires questionnaire = new Questionnaires();
+            using (var context = new QCMAppBDDEntities())
+            {
+                try
+                {
+                    questionnaire = context.Questionnaires.Where(q => q.intitule == intitule).Select(q=>q).FirstOrDefault();
+
+                }
+                catch (SqlException e)
+                {
+
+                    throw;
+                }
+
+            }
+
+            return questionnaire;
+        }
         public void InsertQuestionnaire(Questionnaires questionnaire)
         {
             using (var context = new QCMAppBDDEntities())
@@ -62,6 +83,7 @@ namespace QCMApp.bll
         }
         public void DeleteQuestionnaire(int id)
         {
+            Tools.Logger.Ecrire(Tools.Logger.Niveau.Info, string.Format("Debut DeleteQuestionnaire({0})", id));
             using (var context = new QCMAppBDDEntities())
             {
                 Questionnaires questionnaire = context.Questionnaires.Find(id);
@@ -70,7 +92,7 @@ namespace QCMApp.bll
                     context.Questionnaires.Remove(questionnaire);
                     context.SaveChanges();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
 
                     throw;

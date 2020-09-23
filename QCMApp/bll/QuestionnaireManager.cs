@@ -15,12 +15,32 @@ namespace QCMApp.bll
 
         public List<Questionnaires> SelectAll()
         {
-            using(var context = new QCMAppBDDEntities())
+            using (var context = new QCMAppBDDEntities())
             {
                 listeQuestionnaires = context.Questionnaires.ToList();
             }
 
             return listeQuestionnaires;
+        }
+        public Questionnaires FindById(int id)
+        {
+            Questionnaires questionnaire = new Questionnaires();
+            using (var context = new QCMAppBDDEntities())
+            {
+                try
+                {
+                    questionnaire = context.Questionnaires.Find(id);
+                    
+                }
+                catch (SqlException e)
+                {
+
+                    throw;
+                }
+
+            }
+
+            return questionnaire;
         }
         public void InsertQuestionnaire(Questionnaires questionnaire)
         {
@@ -57,11 +77,11 @@ namespace QCMApp.bll
                 }
             }
         }
-        public void UpdateQustionnaire(Questionnaires questionnaire)
+        public void UpdateQuestionnaire(Questionnaires questionnaire)
         {
             using (var context = new QCMAppBDDEntities())
             {
-              
+
                 try
                 {
                     context.Questionnaires.AddOrUpdate(questionnaire);
@@ -73,5 +93,6 @@ namespace QCMApp.bll
                     throw;
                 }
             }
+        }
     }
 }

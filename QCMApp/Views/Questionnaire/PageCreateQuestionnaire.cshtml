@@ -12,12 +12,12 @@
 <hr class="style1" />
 <div class="row">
     <div class="col-md-2">
-        @Html.ActionLink("Nouvelle question", "Index", "Home", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Nouvelle question", "", "Question", null, new { @class = "btn btn-default" })
     </div>
     <div class="col-md-2">
-        @Html.ActionLink("Nouvelle élément", "Index", "Home", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Nouvelle description", "PageCreateDescription", "Element", null, new { @class = "btn btn-default" })
     </div>
-    @using (Html.BeginForm("InsertQuestionnaire", "Questionnaire", FormMethod.Post))
+    @using (Html.BeginForm("CreateQuestionnaire", "Questionnaire", FormMethod.Post))
     {
         <div class="col-md-2">
             <input type="text" placeholder="Nom du questionnaire" name="intitule" id="intitule"/>
@@ -26,7 +26,7 @@
         <input type="number" placeholder="Note acceptable" name="note" />
     </div>
     <div class="col-md-2">
-        <input type="submit" value="Finir" />
+        <input type="submit" value="Enregister" />
     </div>
     }
     <div class="col-md-1">

@@ -18,11 +18,11 @@ namespace QCMApp.Controllers
             listeQuestionnaires = qm.SelectAll();
             return View(listeQuestionnaires);
         }
-        public ActionResult CreateQuestionnaire()
+        public ActionResult PageCreateQuestionnaire()
         {
             return View();
         }
-        public ActionResult InsertQuestionnaire(string intitule, int note)
+        public ActionResult CreateQuestionnaire(string intitule, int note)
         {
             var questionnaireEntity = new Questionnaires();
             questionnaireEntity.intitule = intitule;
@@ -37,9 +37,20 @@ namespace QCMApp.Controllers
             qm.DeleteQuestionnaire(id);
             return RedirectToAction("ListeQuestionnaires", "Questionnaire");
         }
-        public ActionResult UpdateQuestionnaire(Questionnaires questionnaire)
+        public ActionResult PageUpdateQuestionnaire(int id)
         {
+            Questionnaires questionnaire = new Questionnaires();
+            questionnaire = qm.FindById(id);
+            return View(questionnaire);
 
+        }
+        public ActionResult UpdateQuestionnaire(string intitule, int note, int id)
+        {
+            Questionnaires questionnaire = new Questionnaires();
+            questionnaire = qm.FindById(id);
+            questionnaire.intitule = intitule;
+            questionnaire.note = note;
+            qm.UpdateQuestionnaire(questionnaire);
             return RedirectToAction("ListeQuestionnaires", "Questionnaire");
         }
         //TODO Voir pour l'update avec la configuration de la page création de questionnaire

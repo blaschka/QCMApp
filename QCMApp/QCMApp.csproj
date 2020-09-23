@@ -128,10 +128,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="bll\ElementManager.cs" />
     <Compile Include="bll\QuestionnaireManager.cs" />
     <Compile Include="Choixes.cs">
       <DependentUpon>ModelQCM2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ElementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Elements.cs">
@@ -220,11 +222,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Questionnaire\ListeQuestionnaires.cshtml" />
-    <Content Include="Views\Questionnaire\CreateQuestionnaire.cshtml" />
+    <Content Include="Views\Questionnaire\PageCreateQuestionnaire.cshtml" />
+    <Content Include="Views\Questionnaire\PageUpdateQuestionnaire.cshtml" />
+    <Content Include="Views\Element\PageCreateDescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

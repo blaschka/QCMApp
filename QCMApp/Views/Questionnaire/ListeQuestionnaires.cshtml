@@ -7,7 +7,7 @@
 <h2>Liste questionnaires</h2>
 
 <p>
-    @Html.ActionLink("Nouveau questionnaire", "CreateQuestionnaire", "Questionnaire")
+    @Html.ActionLink("Nouveau questionnaire", "PageCreateQuestionnaire", "Questionnaire")
 </p>
 <table class="table">
     <tr>
@@ -40,9 +40,10 @@
 
         </td>
         <td>
-            @Html.ActionLink("Aperçu", "Aperçu", new { id = item.Id }) |
-            @Html.ActionLink("Update", "Update", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "DeleteQuestionnaire", new { id = item.Id })
+            @Html.ActionLink("Aperçu", "AperçuQuestionnaire", new { id = item.Id }) |
+            @Html.ActionLink("Update", "PageUpdateQuestionnaire", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteQuestionnaire", new { id = item.Id }) |
+            @Html.ActionLink("Copy", "CopyQuestionnaire", new { id = item.Id })
         </td>
     </tr>
 }

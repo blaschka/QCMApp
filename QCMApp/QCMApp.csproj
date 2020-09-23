@@ -129,12 +129,45 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="bll\QuestionnaireManager.cs" />
+    <Compile Include="Choixes.cs">
+      <DependentUpon>ModelQCM2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionnaireController.cs" />
+    <Compile Include="Elements.cs">
+      <DependentUpon>ModelQCM2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelQCM2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelQCM2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelQCM2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelQCM2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelQCM2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelQCM2.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Questionnaires.cs">
+      <DependentUpon>ModelQCM2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reponses.cs">
+      <DependentUpon>ModelQCM2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TypeElements.cs">
+      <DependentUpon>ModelQCM2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilisateurs.cs">
+      <DependentUpon>ModelQCM2.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\asserts\logo\favicon.jpeg" />
@@ -146,8 +179,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ModelQCM2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelQCM2.edmx</DependentUpon>
+      <LastGenOutput>ModelQCM2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelQCM2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelQCM2.edmx</DependentUpon>
+      <LastGenOutput>ModelQCM2.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="ModelQCM2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelQCM2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ModelQCM2.edmx.diagram">
+      <DependentUpon>ModelQCM2.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

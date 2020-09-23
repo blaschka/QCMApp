@@ -15,7 +15,7 @@ namespace QCMApp.Controllers
         public ActionResult ListeQuestionnaires()
         {
             List<Questionnaires> listeQuestionnaires = new List<Questionnaires>();
-            listeQuestionnaires = qm.selectAll();
+            listeQuestionnaires = qm.SelectAll();
             return View(listeQuestionnaires);
         }
         public ActionResult CreateQuestionnaire()
@@ -27,12 +27,21 @@ namespace QCMApp.Controllers
             var questionnaireEntity = new Questionnaires();
             questionnaireEntity.intitule = intitule;
             questionnaireEntity.note = note;
-            qm.insertQuestionnaire(questionnaireEntity);
+            questionnaireEntity.date = DateTime.Now;
+            qm.InsertQuestionnaire(questionnaireEntity);
+            return RedirectToAction("ListeQuestionnaires", "Questionnaire");
+        }
+
+        public ActionResult DeleteQuestionnaire(int id)
+        {
+            qm.DeleteQuestionnaire(id);
             return RedirectToAction("ListeQuestionnaires", "Questionnaire");
         }
         public ActionResult UpdateQuestionnaire(Questionnaires questionnaire)
         {
+
             return RedirectToAction("ListeQuestionnaires", "Questionnaire");
         }
+        //TODO Voir pour l'update avec la configuration de la page création de questionnaire
     }
 }

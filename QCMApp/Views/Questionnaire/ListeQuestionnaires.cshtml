@@ -34,9 +34,15 @@
             @Html.DisplayFor(modelItem => item.intitule)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+
+        </td>
+        <td>
             @Html.ActionLink("Aperçu", "Aperçu", new { id = item.Id }) |
             @Html.ActionLink("Update", "Update", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Delete", "DeleteQuestionnaire", new { id = item.Id })
         </td>
     </tr>
 }

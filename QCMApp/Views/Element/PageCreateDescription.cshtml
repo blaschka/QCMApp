@@ -7,7 +7,7 @@
 <h2>PageCreateDescription</h2>
 
 
-@using (Html.BeginForm("CreateDescription", "Question", FormMethod.Post))
+@using (Html.BeginForm("CreateDescription", "Element", FormMethod.Post))
 {
     <hr class="style1" />
     <div class="row">
@@ -20,12 +20,7 @@
         </div>
     </div>
 
-
-
-
-
-
-    <hr class="style1" />
+     <hr class="style1" />
     <div class="row">
         <div class="col-md-7">
         </div>
@@ -39,7 +34,7 @@
         <div class="col-md-1">
             <input type="submit" value="Aperçu" name="apercu" id="apercu" />
         </div>
-        <input type="hidden" name="idQuestionnaire" value="@Html.DisplayNameFor(model => model.Id)" />
+        <input type="hidden" name="idQuestionnaire" value="@Html.DisplayFor(model => model.Id)" />
        
     </div>
 }

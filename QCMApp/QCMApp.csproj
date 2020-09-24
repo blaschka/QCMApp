@@ -160,6 +160,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelQCM2.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModelQuestionnaireElements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questionnaires.cs">
       <DependentUpon>ModelQCM2.tt</DependentUpon>
@@ -244,7 +245,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

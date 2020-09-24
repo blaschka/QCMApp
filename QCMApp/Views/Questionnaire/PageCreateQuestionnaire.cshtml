@@ -1,4 +1,4 @@
-﻿@model QCMApp.Questionnaires
+﻿@model QCMApp.Models.ViewModelQuestionnaireElements
 
 @{
     ViewBag.Title = "CreateQuestionnaire";
@@ -8,6 +8,11 @@
 
 
 <hr class="style1" />
+<div class="row">
+    <div class="col-mid-3">
+        
+    </div>
+</div>
 
 <hr class="style1" />
 <div class="row">
@@ -17,13 +22,13 @@
     </div>
     <div class="col-md-2">
         <h2> </h2>
-        @Html.ActionLink("Nouvelle description", "PageCreateDescription", "Element", new { id =Model.Id }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Nouvelle description", "PageCreateDescription", "Element", new { id =Model.questionnaire.Id }, new { @class = "btn btn-default" })
     </div>
     @using (Html.BeginForm("CreateQuestionnaire", "Questionnaire", FormMethod.Post))
     {
     <div class="col-md-3">
         <label for="intitule"> Intitule du questionnaire</label>
-        <input type="text" value="@Html.DisplayFor(model => model.intitule)" name="intitule" id="intituleCreateIntitule" size="100" />
+        <input type="text" value="@Html.DisplayFor(model => model.questionnaire.intitule)" name="intitule" id="intituleCreateIntitule" size="100" />
     </div>
     <div class="col-md-2">
         <label for="note"> Note acceptable</label>

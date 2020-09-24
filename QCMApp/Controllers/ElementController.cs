@@ -20,8 +20,17 @@ namespace QCMApp.Controllers
         }
         public ActionResult CreateDescription(string intitule, string texte,int idQuestionnaire)
         {
+            Elements element = new Elements();
+            Questionnaires questionnaire = new Questionnaires();
+            element.intitule = intitule;
+            element.texte = texte;
+            element.questionnaire_id = idQuestionnaire;
+            em.InsertElement(element);         
+            //questionnaire = qm.FindById(idQuestionnaire);
+            //questionnaire.Elements.Add(element);
+            //qm.UpdateQuestionnaire(questionnaire);
 
-            return RedirectToAction("CreateQuestionnaire", "Questionnaire");
+            return RedirectToAction("PageCreateQuestionnaire", "Questionnaire");
         }
         public ActionResult PageCreateQuestion()
         {

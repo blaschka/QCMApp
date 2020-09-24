@@ -1,4 +1,5 @@
 ﻿using QCMApp.bll;
+using QCMApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,6 +12,7 @@ namespace QCMApp.Controllers
     public class QuestionnaireController : Controller
     {
         QuestionnaireManager qm = new QuestionnaireManager();
+        ElementManager em = new ElementManager();
         // GET: Questionnaire
         public ActionResult ListeQuestionnaires()
         {
@@ -18,24 +20,37 @@ namespace QCMApp.Controllers
             listeQuestionnaires = qm.SelectAll();
             return View(listeQuestionnaires);
         }
-        public ActionResult PageCreateQuestionnaire(Questionnaires questionnaire)
+        [HttpPost]
+        public ActionResult PageCreateQuestionnaire(int id)
         {
-            return View(questionnaire);
+            // Je dois créer le viewModel dans l'ActionResult qui amène à la View
+            var questionnaireEntity = new Questionnaires();
+            ViewModelQuestionnaireElements vmqe = new ViewModelQuestionnaireElements();
+           
+            questionnaireEntity = qm.FindById(id);
+            vmqe.questionnaire = questionnaireEntity;
+            return View(vmqe);
         }
         public ActionResult PageCreateIntituleQuestionnaire()
         {
             return View();
         }
+
         public ActionResult CreateIntituleQuestionnaire(string intitule)
         {
+            // la création de l'intitulé du questionnaire va créer le questionnaire et amner sur la page de création du questionnaire
+            
             var questionnaireEntity = new Questionnaires();
             questionnaireEntity.intitule = intitule;
             questionnaireEntity.date = DateTime.Now;
             qm.InsertQuestionnaire(questionnaireEntity);
-            //questionnaireEntity = qm.FindByIntitule(questionnaireEntity.intitule);
+            //int id = questionnaireEntity.Id;
             
-            return RedirectToAction("PageCreateQuestionnaire","Questionnaire",questionnaireEntity) ;
+            
+            
+            return RedirectToAction("PageCreateQuestionnaire","Questionnaire",questionnaireEntity.Id) ;
         }
+
         public ActionResult CreateQuestionnaire(string intitule, int note)
         {
             var questionnaireEntity = new Questionnaires();

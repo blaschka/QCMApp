@@ -31,6 +31,8 @@ namespace QCMApp.bll
                 try
                 {
                     questionnaire = context.Questionnaires.Find(id);
+                    //questionnaire.Elements = context.Elements.Where(e=>e.questionnaire_id == id).Select(e=>e).ToList();
+
                     
                 }
                 catch (SqlException e)
@@ -116,5 +118,23 @@ namespace QCMApp.bll
                 }
             }
         }
+        public void AddElement(Questionnaires questionnaire,Elements element )
+        {
+            using (var context = new QCMAppBDDEntities())
+            {
+
+                try
+                {
+                    context.Questionnaires.Find();
+                    context.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+        }
+
     }
 }

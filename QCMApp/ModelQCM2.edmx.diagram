@@ -5,16 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="36200bad796f4adebe5fdc31ff934745" Name="Diagram1" ZoomLevel="95">
-        <EntityTypeShape EntityType="QCMAppBDDModel.Choixes" Width="1.5" PointX="0.75" PointY="1.75" />
-        <EntityTypeShape EntityType="QCMAppBDDModel.Elements" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="QCMAppBDDModel.Questionnaires" Width="1.5" PointX="0.75" PointY="7.5" />
-        <EntityTypeShape EntityType="QCMAppBDDModel.Reponses" Width="1.5" PointX="8" PointY="1" />
-        <EntityTypeShape EntityType="QCMAppBDDModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" />
-        <EntityTypeShape EntityType="QCMAppBDDModel.TypeElements" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="QCMAppBDDModel.Utilisateurs" Width="1.5" PointX="5.75" PointY="1.375" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.Choixes" Width="1.5" PointX="3.75" PointY="7.125" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.Elements" Width="1.5" PointX="6" PointY="3.125" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.GroupeSiteQuestionnaire" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.Questionnaires" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.Reponses" Width="1.5" PointX="8" PointY="8.625" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.Site" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.TypeElements" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QCMAppBDDModel.Utilisateurs" Width="1.5" PointX="5.75" PointY="9" />
         <AssociationConnector Association="QCMAppBDDModel.FK_Elements_Choixes" />
         <AssociationConnector Association="QCMAppBDDModel.FK_Elements_Questionnaires" />
         <AssociationConnector Association="QCMAppBDDModel.FK_ElementTypeElement" />
+        <AssociationConnector Association="QCMAppBDDModel.FK_GroupeSiteQuestionnaire_Questionnaires" />
+        <AssociationConnector Association="QCMAppBDDModel.FK_GroupeSiteQuestionnaire_Site" />
         <AssociationConnector Association="QCMAppBDDModel.FK_UtilisateurReponse" />
       </Diagram>
     </edmx:Diagrams>

@@ -27,8 +27,10 @@ namespace QCMApp
     
         public virtual DbSet<Choixes> Choixes { get; set; }
         public virtual DbSet<Elements> Elements { get; set; }
+        public virtual DbSet<GroupeSiteQuestionnaire> GroupeSiteQuestionnaire { get; set; }
         public virtual DbSet<Questionnaires> Questionnaires { get; set; }
         public virtual DbSet<Reponses> Reponses { get; set; }
+        public virtual DbSet<Site> Site { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeElements> TypeElements { get; set; }
         public virtual DbSet<Utilisateurs> Utilisateurs { get; set; }

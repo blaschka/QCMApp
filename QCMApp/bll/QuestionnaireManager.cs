@@ -108,6 +108,11 @@ namespace QCMApp.bll
 
                 try
                 {
+                    //context.Questionnaires.AddOrUpdate(questionnaire);
+                    //Questionnaires questionnaireData = context.Questionnaires.Find(questionnaire.Id);
+                    //questionnaireData.intitule = questionnaire.intitule;
+                    //questionnaireData.note = questionnaire.note;
+                    //questionnaireData.actif = questionnaire.actif;
                     context.Questionnaires.AddOrUpdate(questionnaire);
                     context.SaveChanges();
                 }

@@ -18,6 +18,9 @@
             Date de création
         </th>
         <th>
+            Sites
+        </th>
+        <th>
             Activité
         </th>
         <th>
@@ -28,24 +31,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.intitule)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.intitule)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                <input type="checkbox" id="lieu1" name="lieu1" value="lieu1">
+                <label for="lieu1">Lieu 1</label>
+                <input type="checkbox" id="lieu2" name="lieu2" value="lieu2">
+                <label for="lieu2">Lieu 2</label>
+                <input type="checkbox" id="lieu3" name="lieu3" value="lieu3">
+                <label for="lieu3">Lieu 3</label>
+            </td>
+            <td>
+                <input type="checkbox" id="actif" name="actif" value="actif">
+                <label for="actif">Actif</label>
+            </td>
+            <td>
 
-        </td>
-        <td>
-            @Html.ActionLink("Aperçu", "AperçuQuestionnaire", new { id = item.Id }) |
-            @Html.ActionLink("Update", "PageUpdateQuestionnaire", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "DeleteQuestionnaire", new { id = item.Id }) |
-            @Html.ActionLink("Copy", "CopyQuestionnaire", new { id = item.Id })
-        </td>
-    </tr>
-}
+                <input type="button" class="btn btn-outline-primary" value="Update" onclick="location.href='@Url.Action("PageCreateQuestionnaire", "Questionnaire", new { id = item.Id })'" />
+                <input type="button" class="btn btn-outline-primary" value="Copy" onclick="location.href='@Url.Action("CopyQuestionnaire", "Questionnaire", new { id = item.Id })'" />
+                <input type="button" class="btn btn-outline-primary" value="Delete" onclick="location.href='@Url.Action("DeleteQuestionnaire", "Questionnaire", new { id = item.Id })'" />
 
+
+            </td>
+        </tr>
+    }
 </table>
+<script>
+    var elem = document.getElementById('delete');
+    elem.onclick = function(){ alert('L\'intitulé à bien été enregistré')};
+</script>

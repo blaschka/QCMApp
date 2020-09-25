@@ -1,0 +1,41 @@
+﻿@model QCMApp.Questionnaires
+
+@{
+    ViewBag.Title = "PageCreateDescription";
+}
+
+<h2>PageCreateDescription</h2>
+
+
+@using (Html.BeginForm("CreateDescription", "Description", FormMethod.Post))
+{
+    <hr class="style1" />
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <textarea name="texte" rows="5" cols="400" id="textareaDescription"></textarea>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
+     <hr class="style1" />
+     <div class="row">
+         <div class="col-md-7">
+         </div>
+         <div class="col-md-3">
+             <input type="text" placeholder="Nom de la description" name="intitule" id="intitule" />
+         </div>
+         <div class="col-md-1">
+             <input type="submit" value="Enregister" />
+         </div>
+
+         <div class="col-md-1">
+             <input type="submit" value="Aperçu" name="apercu" id="apercu" />
+         </div>
+         <input type="hidden" name="idQuestionnaire" value="@Html.DisplayFor(model => model.Id)" />
+
+
+     </div>
+}

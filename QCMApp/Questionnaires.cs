@@ -18,6 +18,7 @@ namespace QCMApp
         public Questionnaires()
         {
             this.Elements = new HashSet<Elements>();
+            this.GroupeSiteQuestionnaire = new HashSet<GroupeSiteQuestionnaire>();
         }
     
         public int Id { get; set; }
@@ -25,8 +26,11 @@ namespace QCMApp
         public string couleur { get; set; }
         public Nullable<int> note { get; set; }
         public Nullable<System.DateTime> date { get; set; }
+        public Nullable<int> actif { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Elements> Elements { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GroupeSiteQuestionnaire> GroupeSiteQuestionnaire { get; set; }
     }
 }

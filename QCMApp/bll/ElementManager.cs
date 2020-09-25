@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
@@ -54,7 +55,7 @@ namespace QCMApp.bll
 
             return listeElements;
         }
-        public List<Elements> SelectAllFromQustionnaire(int id)
+        public List<Elements> SelectAllFromQuestionnaire(int id)
         {
 
                 Questionnaires questionnaire = new Questionnaires();
@@ -76,5 +77,42 @@ namespace QCMApp.bll
                 }
                 return (List<Elements>)questionnaire.Elements;
         }
+        public void DeleteElement(int id)
+        {
+            Tools.Logger.Ecrire(Tools.Logger.Niveau.Info, string.Format("Debut DeleteElement({0})", id));
+            using (var context = new QCMAppBDDEntities())
+            {
+                var element = context.Elements.Find(id);
+                try
+                {
+                    context.Elements.Remove(element);
+                    context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+
+                    throw;
+                }
+            }
+        }
+
+        public void UpdateElement(Elements element)
+        {
+            using (var context = new QCMAppBDDEntities())
+            {
+                try
+                {
+                    context.Elements.AddOrUpdate(element);
+                    context.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+        }
     }
+
 }

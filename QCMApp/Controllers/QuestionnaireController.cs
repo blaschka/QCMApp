@@ -20,15 +20,19 @@ namespace QCMApp.Controllers
             listeQuestionnaires = qm.SelectAll();
             return View(listeQuestionnaires);
         }
-        [HttpPost]
+        //public ActionResult PageCreateQuestionnaire(ViewModelQuestionnaireElements vm)
+        [HttpGet]
         public ActionResult PageCreateQuestionnaire(int id)
         {
             // Je dois créer le viewModel dans l'ActionResult qui amène à la View
             var questionnaireEntity = new Questionnaires();
             ViewModelQuestionnaireElements vmqe = new ViewModelQuestionnaireElements();
-           
+
+            //questionnaireEntity = qm.FindById(vm.idQuestionnaire);
             questionnaireEntity = qm.FindById(id);
             vmqe.questionnaire = questionnaireEntity;
+            //vmqe.elements = em.SelectAllFromQuestionnaire(vm.idQuestionnaire);
+            vmqe.elements = em.SelectAllFromQuestionnaire(id);
             return View(vmqe);
         }
         public ActionResult PageCreateIntituleQuestionnaire()
@@ -39,25 +43,29 @@ namespace QCMApp.Controllers
         public ActionResult CreateIntituleQuestionnaire(string intitule)
         {
             // la création de l'intitulé du questionnaire va créer le questionnaire et amner sur la page de création du questionnaire
-            
+            ViewModelQuestionnaireElements vm = new ViewModelQuestionnaireElements();
             var questionnaireEntity = new Questionnaires();
             questionnaireEntity.intitule = intitule;
             questionnaireEntity.date = DateTime.Now;
             qm.InsertQuestionnaire(questionnaireEntity);
             //int id = questionnaireEntity.Id;
-            
-            
-            
-            return RedirectToAction("PageCreateQuestionnaire","Questionnaire",questionnaireEntity.Id) ;
+            //vm.idQuestionnaire = questionnaireEntity.Id;
+            int id = questionnaireEntity.Id;
+
+
+
+            //return RedirectToAction("PageCreateQuestionnaire", "Questionnaire", vm) ;
+            return RedirectToAction("PageCreateQuestionnaire", "Questionnaire", new { id = id });
         }
 
-        public ActionResult CreateQuestionnaire(string intitule, int note)
+        public ActionResult CreateQuestionnaire(string intitule, int note, int id)
         {
             var questionnaireEntity = new Questionnaires();
             questionnaireEntity.intitule = intitule;
             questionnaireEntity.note = note;
             questionnaireEntity.date = DateTime.Now;
-            qm.InsertQuestionnaire(questionnaireEntity);
+            questionnaireEntity.Id = id;
+            qm.UpdateQuestionnaire(questionnaireEntity);
             return RedirectToAction("ListeQuestionnaires", "Questionnaire");
         }
 
@@ -68,10 +76,13 @@ namespace QCMApp.Controllers
         }
         public ActionResult PageUpdateQuestionnaire(int id)
         {
+            ViewModelQuestionnaireElements vmqe = new ViewModelQuestionnaireElements();
             Questionnaires questionnaire = new Questionnaires();
-            questionnaire = qm.FindById(id);
-            return View(questionnaire);
-
+            //questionnaire = qm.FindById(id);
+            //vmqe.questionnaire = qm.FindById(id);
+            //vmqe.elements = em.SelectAllFromQuestionnaire(id);
+            //return View(questionnaire);
+            return RedirectToAction("PageCreateQuestionnaire", "Questionnaire", new { id = id });
         }
         public ActionResult UpdateQuestionnaire(string intitule, int note, int id)
         {

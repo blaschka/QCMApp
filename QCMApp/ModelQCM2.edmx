@@ -29,6 +29,14 @@
           <Property Name="questionnaire_id" Type="int" />
           <Property Name="texte" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="GroupeSiteQuestionnaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="site_id" Type="int" />
+          <Property Name="questionnaire_id" Type="int" />
+        </EntityType>
         <EntityType Name="Questionnaires">
           <Key>
             <PropertyRef Name="Id" />
@@ -38,6 +46,7 @@
           <Property Name="couleur" Type="varchar" MaxLength="50" />
           <Property Name="note" Type="int" />
           <Property Name="date" Type="datetime" />
+          <Property Name="actif" Type="int" />
         </EntityType>
         <EntityType Name="Reponses">
           <Key>
@@ -53,6 +62,13 @@
           <Property Name="statut" Type="bit" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
           <Property Name="UtilisateurId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -118,6 +134,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GroupeSiteQuestionnaire_Questionnaires">
+          <End Role="Questionnaires" Type="Self.Questionnaires" Multiplicity="0..1" />
+          <End Role="GroupeSiteQuestionnaire" Type="Self.GroupeSiteQuestionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questionnaires">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupeSiteQuestionnaire">
+              <PropertyRef Name="questionnaire_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupeSiteQuestionnaire_Site">
+          <End Role="Site" Type="Self.Site" Multiplicity="0..1" />
+          <End Role="GroupeSiteQuestionnaire" Type="Self.GroupeSiteQuestionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupeSiteQuestionnaire">
+              <PropertyRef Name="site_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UtilisateurReponse">
           <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1" />
           <End Role="Reponses" Type="Self.Reponses" Multiplicity="*" />
@@ -133,8 +173,10 @@
         <EntityContainer Name="QCMAppBDDModelStoreContainer">
           <EntitySet Name="Choixes" EntityType="Self.Choixes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Elements" EntityType="Self.Elements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupeSiteQuestionnaire" EntityType="Self.GroupeSiteQuestionnaire" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questionnaires" EntityType="Self.Questionnaires" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reponses" EntityType="Self.Reponses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Site" EntityType="Self.Site" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeElements" EntityType="Self.TypeElements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" Schema="dbo" store:Type="Tables" />
@@ -150,6 +192,14 @@
             <End Role="TypeElements" EntitySet="TypeElements" />
             <End Role="Elements" EntitySet="Elements" />
           </AssociationSet>
+          <AssociationSet Name="FK_GroupeSiteQuestionnaire_Questionnaires" Association="Self.FK_GroupeSiteQuestionnaire_Questionnaires">
+            <End Role="Questionnaires" EntitySet="Questionnaires" />
+            <End Role="GroupeSiteQuestionnaire" EntitySet="GroupeSiteQuestionnaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupeSiteQuestionnaire_Site" Association="Self.FK_GroupeSiteQuestionnaire_Site">
+            <End Role="Site" EntitySet="Site" />
+            <End Role="GroupeSiteQuestionnaire" EntitySet="GroupeSiteQuestionnaire" />
+          </AssociationSet>
           <AssociationSet Name="FK_UtilisateurReponse" Association="Self.FK_UtilisateurReponse">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
             <End Role="Reponses" EntitySet="Reponses" />
@@ -162,8 +212,10 @@
         <EntityContainer Name="QCMAppBDDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Choixes" EntityType="QCMAppBDDModel.Choixes" />
           <EntitySet Name="Elements" EntityType="QCMAppBDDModel.Elements" />
+          <EntitySet Name="GroupeSiteQuestionnaire" EntityType="QCMAppBDDModel.GroupeSiteQuestionnaire" />
           <EntitySet Name="Questionnaires" EntityType="QCMAppBDDModel.Questionnaires" />
           <EntitySet Name="Reponses" EntityType="QCMAppBDDModel.Reponses" />
+          <EntitySet Name="Site" EntityType="QCMAppBDDModel.Site" />
           <EntitySet Name="sysdiagrams" EntityType="QCMAppBDDModel.sysdiagrams" />
           <EntitySet Name="TypeElements" EntityType="QCMAppBDDModel.TypeElements" />
           <EntitySet Name="Utilisateurs" EntityType="QCMAppBDDModel.Utilisateurs" />
@@ -178,6 +230,14 @@
           <AssociationSet Name="FK_ElementTypeElement" Association="QCMAppBDDModel.FK_ElementTypeElement">
             <End Role="TypeElements" EntitySet="TypeElements" />
             <End Role="Elements" EntitySet="Elements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupeSiteQuestionnaire_Questionnaires" Association="QCMAppBDDModel.FK_GroupeSiteQuestionnaire_Questionnaires">
+            <End Role="Questionnaires" EntitySet="Questionnaires" />
+            <End Role="GroupeSiteQuestionnaire" EntitySet="GroupeSiteQuestionnaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupeSiteQuestionnaire_Site" Association="QCMAppBDDModel.FK_GroupeSiteQuestionnaire_Site">
+            <End Role="Site" EntitySet="Site" />
+            <End Role="GroupeSiteQuestionnaire" EntitySet="GroupeSiteQuestionnaire" />
           </AssociationSet>
           <AssociationSet Name="FK_UtilisateurReponse" Association="QCMAppBDDModel.FK_UtilisateurReponse">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
@@ -212,6 +272,16 @@
           <NavigationProperty Name="Questionnaires" Relationship="QCMAppBDDModel.FK_Elements_Questionnaires" FromRole="Elements" ToRole="Questionnaires" />
           <NavigationProperty Name="TypeElements" Relationship="QCMAppBDDModel.FK_ElementTypeElement" FromRole="Elements" ToRole="TypeElements" />
         </EntityType>
+        <EntityType Name="GroupeSiteQuestionnaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="site_id" Type="Int32" />
+          <Property Name="questionnaire_id" Type="Int32" />
+          <NavigationProperty Name="Questionnaires" Relationship="QCMAppBDDModel.FK_GroupeSiteQuestionnaire_Questionnaires" FromRole="GroupeSiteQuestionnaire" ToRole="Questionnaires" />
+          <NavigationProperty Name="Site" Relationship="QCMAppBDDModel.FK_GroupeSiteQuestionnaire_Site" FromRole="GroupeSiteQuestionnaire" ToRole="Site" />
+        </EntityType>
         <EntityType Name="Questionnaires">
           <Key>
             <PropertyRef Name="Id" />
@@ -221,7 +291,9 @@
           <Property Name="couleur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="note" Type="Int32" />
           <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="actif" Type="Int32" />
           <NavigationProperty Name="Elements" Relationship="QCMAppBDDModel.FK_Elements_Questionnaires" FromRole="Questionnaires" ToRole="Elements" />
+          <NavigationProperty Name="GroupeSiteQuestionnaire" Relationship="QCMAppBDDModel.FK_GroupeSiteQuestionnaire_Questionnaires" FromRole="Questionnaires" ToRole="GroupeSiteQuestionnaire" />
         </EntityType>
         <EntityType Name="Reponses">
           <Key>
@@ -238,6 +310,14 @@
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UtilisateurId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Utilisateurs" Relationship="QCMAppBDDModel.FK_UtilisateurReponse" FromRole="Reponses" ToRole="Utilisateurs" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GroupeSiteQuestionnaire" Relationship="QCMAppBDDModel.FK_GroupeSiteQuestionnaire_Site" FromRole="Site" ToRole="GroupeSiteQuestionnaire" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -305,6 +385,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GroupeSiteQuestionnaire_Questionnaires">
+          <End Type="QCMAppBDDModel.Questionnaires" Role="Questionnaires" Multiplicity="0..1" />
+          <End Type="QCMAppBDDModel.GroupeSiteQuestionnaire" Role="GroupeSiteQuestionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questionnaires">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupeSiteQuestionnaire">
+              <PropertyRef Name="questionnaire_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupeSiteQuestionnaire_Site">
+          <End Type="QCMAppBDDModel.Site" Role="Site" Multiplicity="0..1" />
+          <End Type="QCMAppBDDModel.GroupeSiteQuestionnaire" Role="GroupeSiteQuestionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupeSiteQuestionnaire">
+              <PropertyRef Name="site_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UtilisateurReponse">
           <End Type="QCMAppBDDModel.Utilisateurs" Role="Utilisateurs" Multiplicity="1" />
           <End Type="QCMAppBDDModel.Reponses" Role="Reponses" Multiplicity="*" />
@@ -349,9 +453,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="GroupeSiteQuestionnaire">
+            <EntityTypeMapping TypeName="QCMAppBDDModel.GroupeSiteQuestionnaire">
+              <MappingFragment StoreEntitySet="GroupeSiteQuestionnaire">
+                <ScalarProperty Name="questionnaire_id" ColumnName="questionnaire_id" />
+                <ScalarProperty Name="site_id" ColumnName="site_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Questionnaires">
             <EntityTypeMapping TypeName="QCMAppBDDModel.Questionnaires">
               <MappingFragment StoreEntitySet="Questionnaires">
+                <ScalarProperty Name="actif" ColumnName="actif" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="couleur" ColumnName="couleur" />
@@ -372,6 +486,14 @@
                 <ScalarProperty Name="idElement" ColumnName="idElement" />
                 <ScalarProperty Name="intituleQuestionnaire" ColumnName="intituleQuestionnaire" />
                 <ScalarProperty Name="idQuestionnaire" ColumnName="idQuestionnaire" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Site">
+            <EntityTypeMapping TypeName="QCMAppBDDModel.Site">
+              <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="nom" ColumnName="nom" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

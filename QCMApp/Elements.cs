@@ -24,6 +24,7 @@ namespace QCMApp
         public Nullable<int> TypeElement_Id { get; set; }
         public Nullable<int> questionnaire_id { get; set; }
         public string texte { get; set; }
+        public Nullable<int> ordre { get; set; }
     
         public virtual Choixes Choixes { get; set; }
         public virtual Questionnaires Questionnaires { get; set; }

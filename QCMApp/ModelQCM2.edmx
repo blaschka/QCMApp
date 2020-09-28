@@ -28,6 +28,7 @@
           <Property Name="TypeElement_Id" Type="int" />
           <Property Name="questionnaire_id" Type="int" />
           <Property Name="texte" Type="varchar(max)" />
+          <Property Name="ordre" Type="int" />
         </EntityType>
         <EntityType Name="GroupeSiteQuestionnaire">
           <Key>
@@ -268,6 +269,7 @@
           <Property Name="TypeElement_Id" Type="Int32" />
           <Property Name="questionnaire_id" Type="Int32" />
           <Property Name="texte" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ordre" Type="Int32" />
           <NavigationProperty Name="Choixes" Relationship="QCMAppBDDModel.FK_Elements_Choixes" FromRole="Elements" ToRole="Choixes" />
           <NavigationProperty Name="Questionnaires" Relationship="QCMAppBDDModel.FK_Elements_Questionnaires" FromRole="Elements" ToRole="Questionnaires" />
           <NavigationProperty Name="TypeElements" Relationship="QCMAppBDDModel.FK_ElementTypeElement" FromRole="Elements" ToRole="TypeElements" />
@@ -440,6 +442,7 @@
           <EntitySetMapping Name="Elements">
             <EntityTypeMapping TypeName="QCMAppBDDModel.Elements">
               <MappingFragment StoreEntitySet="Elements">
+                <ScalarProperty Name="ordre" ColumnName="ordre" />
                 <ScalarProperty Name="texte" ColumnName="texte" />
                 <ScalarProperty Name="questionnaire_id" ColumnName="questionnaire_id" />
                 <ScalarProperty Name="TypeElement_Id" ColumnName="TypeElement_Id" />

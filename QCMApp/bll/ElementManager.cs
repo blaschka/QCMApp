@@ -63,11 +63,15 @@ namespace QCMApp.bll
                 {
                     try
                     {
-                        
-                        questionnaire.Elements = context.Elements.Where(e=>e.questionnaire_id == id).Select(e=>e).ToList();
+
+                    //questionnaire.Elements = context.Elements.Where(e=>e.questionnaire_id == id).Select(e=>e).ToList();
+                    questionnaire.Elements = context.Elements.Where(e => e.questionnaire_id == id)
+                        .Select(e => e)
+                        .OrderBy(e => e.ordre)
+                        .ToList();
 
 
-                    }
+                }
                     catch (Exception e)
                     {
 
@@ -112,6 +116,69 @@ namespace QCMApp.bll
                 }
 
             }
+        }
+        public void UpdateListeElements(List<Elements> elements)
+        {
+            using (var context = new QCMAppBDDEntities())
+            {
+                try
+                {
+                    //context.Questionnaires.AddOrUpdate(elements);
+                    context.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+        }
+        public void elementUp(int idElement)
+        {
+            Elements element = FindById(idElement);
+            Elements elementAvant = elementOrdreAvant(element);
+            int ordreElementOrigin = (int)element.ordre;
+            element.ordre = elementAvant.ordre;
+            elementAvant.ordre = ordreElementOrigin;
+            UpdateElement(element);
+            UpdateElement(elementAvant);
+
+            
+        }
+        public void elementDown(int idElement)
+        {
+            Elements element = FindById(idElement);
+            Elements elementApres = elementOrdreApres(element);
+            int ordreElementOrigin = (int)element.ordre;
+            element.ordre = elementApres.ordre;
+            elementApres.ordre = ordreElementOrigin;
+            UpdateElement(element);
+            UpdateElement(elementApres);
+        }
+        public Elements elementOrdreAvant(Elements element)
+        {
+            Elements elementAvant = new Elements();
+            using (var context = new QCMAppBDDEntities())
+            {
+                elementAvant = context.Elements.Where(e => e.ordre < element.ordre && e.questionnaire_id == element.questionnaire_id)
+                    .Select(e => e).OrderByDescending(e => e.ordre)
+                    .FirstOrDefault();
+
+            }
+            return elementAvant;
+        }
+        public Elements elementOrdreApres(Elements element)
+        {
+            Elements elementApres = new Elements();
+            using (var context = new QCMAppBDDEntities())
+            {
+                elementApres = context.Elements.Where(e => e.ordre > element.ordre && e.questionnaire_id == element.questionnaire_id)
+                    .Select(e => e).OrderBy(e => e.ordre)
+                    .FirstOrDefault();
+
+            }
+            return elementApres;
         }
     }
 

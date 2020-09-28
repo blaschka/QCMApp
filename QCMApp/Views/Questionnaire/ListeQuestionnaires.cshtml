@@ -57,6 +57,7 @@
                 <input type="button" class="btn btn-outline-primary" value="Update" onclick="location.href='@Url.Action("PageCreateQuestionnaire", "Questionnaire", new { id = item.Id })'" />
                 <input type="button" class="btn btn-outline-primary" value="Copy" onclick="location.href='@Url.Action("CopyQuestionnaire", "Questionnaire", new { id = item.Id })'" />
                 <input type="button" class="btn btn-outline-primary" value="Delete" onclick="location.href='@Url.Action("DeleteQuestionnaire", "Questionnaire", new { id = item.Id })'" />
+                <input type="button" class="btn btn-outline-primary" value="Archiver" onclick="location.href='@Url.Action("ArchiverQuestionnaire", "Questionnaire", new { id = item.Id })'" />
 
 
             </td>
@@ -65,5 +66,19 @@
 </table>
 <script>
     var elem = document.getElementById('delete');
-    elem.onclick = function(){ alert('L\'intitulé à bien été enregistré')};
+    elem.onclick = function () { alert('L\'intitulé à bien été enregistré') };
+
+
+    $(document).ready(function () {
+
+        $("#lieu1").click(function () {
+            $.ajax({
+                url: 'Views/Home/Index.cshtml',
+                type: 'GET'
+            })
+        });
+
+    });
+
+
 </script>

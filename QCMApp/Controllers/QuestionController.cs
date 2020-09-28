@@ -22,10 +22,13 @@ namespace QCMApp.Controllers
         {
             Elements element = new Elements();
             Questionnaires questionnaire = new Questionnaires();
+            int count = em.SelectAllFromQuestionnaire(idQuestionnaire).Count;
+
             element.intitule = intitule;
             element.texte = texte;
             element.questionnaire_id = idQuestionnaire;
             element.TypeElement_Id = 2;
+            element.ordre = count + 1;
             em.InsertElement(element);
 
 

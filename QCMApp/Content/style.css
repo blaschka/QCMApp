@@ -17,3 +17,8 @@ li{
 #nombreQuestions {
     text-align: center;
 }
+.arrowButton{
+    width : 1.5em;
+    padding: 4px;
+    
+}

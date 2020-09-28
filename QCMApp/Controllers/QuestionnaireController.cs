@@ -18,6 +18,7 @@ namespace QCMApp.Controllers
         {
             List<Questionnaires> listeQuestionnaires = new List<Questionnaires>();
             listeQuestionnaires = qm.SelectAll();
+            //listeQuestionnaires.OrderBy()
             return View(listeQuestionnaires);
         }
         //public ActionResult PageCreateQuestionnaire(ViewModelQuestionnaireElements vm)

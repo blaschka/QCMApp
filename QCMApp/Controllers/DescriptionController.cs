@@ -28,7 +28,14 @@ namespace QCMApp.Controllers
             element.texte = texte;
             element.questionnaire_id = idQuestionnaire;
             element.TypeElement_Id = 1;
-            element.ordre = count + 1;
+            if (count == 0)
+            {
+                element.ordre = count + 2;
+            }
+            else
+            {
+                element.ordre = count + 2;
+            }
             dm.InsertElement(element);         
 
 

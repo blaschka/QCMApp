@@ -89,8 +89,11 @@ namespace QCMApp.bll
                 var element = context.Elements.Find(id);
                 try
                 {
-                    context.Elements.Remove(element);
+                    int ordre = (int)element.ordre;
+                    int idQuestionnaire = (int)element.questionnaire_id;
+                    context.Elements.Remove(element);               
                     context.SaveChanges();
+                    elementsApresReorder(ordre,idQuestionnaire);
                 }
                 catch (Exception e)
                 {
@@ -179,6 +182,26 @@ namespace QCMApp.bll
 
             }
             return elementApres;
+        }
+        public void elementsApresReorder(int suprimElement,int idQuestionnaire)
+        {
+            
+            using (var context = new QCMAppBDDEntities())
+            {
+                List<Elements> elements = context.Elements.Where(e => e.ordre > suprimElement && e.questionnaire_id == idQuestionnaire)
+                    .Select(e => e).OrderBy(e => e.ordre)
+                    .ToList();
+
+                foreach (var item in elements)
+                {
+                    item.ordre = suprimElement;
+                    UpdateElement(item);
+                    suprimElement++;
+                }
+            }
+
+
+           
         }
     }
 

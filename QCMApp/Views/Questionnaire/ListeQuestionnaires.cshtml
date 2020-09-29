@@ -11,6 +11,7 @@
 </p>
 <table class="table">
     <tr>
+        <th style="display:none"></th>
         <th>
             @Html.DisplayNameFor(model => model.intitule)
         </th>
@@ -33,7 +34,9 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr><td style="display:none">
+            @item.Id
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.intitule)
             </td>
@@ -41,44 +44,59 @@
                 @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
-                <input type="checkbox" id="lieu1" name="lieu1" value="lieu1">
+                <input type="checkbox" id="lieu1@item.Id" name="lieu1" value="lieu1" class="lieu" >
                 <label for="lieu1">Lieu 1</label>
-                <input type="checkbox" id="lieu2" name="lieu2" value="lieu2">
+                <input type="checkbox" id="lieu2@item.Id" name="lieu2" value="lieu2" class="lieu" >
                 <label for="lieu2">Lieu 2</label>
-                <input type="checkbox" id="lieu3" name="lieu3" value="lieu3">
-                <label for="lieu3">Lieu 3</label>
-            </td>
-            <td>
-                <input type="checkbox" id="actif" name="actif" value="actif">
-                <label for="actif">Actif</label>
-            </td>
-            <td>
+                @*<input type="checkbox" id='@{"lieu3" + item.Id.ToString();} ' name="lieu3" value="lieu3" class="lieu" >*@
+<label for="lieu3">Lieu 3</label>
 
-                <input type="button" class="btn btn-outline-primary" value="Update" onclick="location.href='@Url.Action("PageCreateQuestionnaire", "Questionnaire", new { id = item.Id })'" />
+</td>
+
+<td>
+
+<input type="checkbox" id="actif" name="actif" value="actif">
+
+<label for="actif">Actif</label>
+
+</td>
+
+<td>
+
+
+<input type="button" class="btn btn-outline-primary" value="Update" onclick="location.href='@Url.Action("PageCreateQuestionnaire", "Questionnaire", new { id = item.Id })'" />
                 <input type="button" class="btn btn-outline-primary" value="Copy" onclick="location.href='@Url.Action("CopyQuestionnaire", "Questionnaire", new { id = item.Id })'" />
                 <input type="button" class="btn btn-outline-primary" value="Delete" onclick="location.href='@Url.Action("DeleteQuestionnaire", "Questionnaire", new { id = item.Id })'" />
-                <input type="button" class="btn btn-outline-primary" value="Archiver" onclick="location.href='@Url.Action("ArchiverQuestionnaire", "Questionnaire", new { id = item.Id })'" />
+                @*<input type="button" class="btn btn-outline-primary" value="Archiver" onclick="location.href='@Url.Action("ArchiverQuestionnaire", "Questionnaire", new { id = item.Id })'" />*@
 
 
             </td>
         </tr>
     }
 </table>
-<script>
-    var elem = document.getElementById('delete');
-    elem.onclick = function () { alert('L\'intitulé à bien été enregistré') };
+@section Scripts {
+
+        var elem = document.getElementById('delete');
+        elem.onclick = function () { alert('L\'intitulé à bien été enregistré') };
+
+    <script type="text/javascript">
+        $(document).ready(function () {
 
 
-    $(document).ready(function () {
+            $(".lieu").click(function () {
+                // var lieu1 = $(ti);
+                var idQuestionnaire = $(this).closest("tr").find("td").eq(0).text().trim();
+                var lieu1 = document.getElementById("lieu1" + idQuestionnaire) 
+                var 
 
-        $("#lieu1").click(function () {
-            $.ajax({
-                url: 'Views/Home/Index.cshtml',
-                type: 'GET'
-            })
-        });
-
-    });
+                });
 
 
-</script>
+
+
+
+             })
+    </script>
+
+
+}
